@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "project-snow"
+version = "0.1.0"
+description = ""
+authors = ["wookiee89 <jay.r.jain@gmail.com>"]
+readme = "README.md"
+packages = [{include = "project_snow"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.101.0"
+pydantic = {extras = ["dotenv"], version = "^2.1.1"}
+uvicorn = "^0.23.2"
+SQLAlchemy = {extras = ["asyncio"], version = "^2.0.19"}
+asyncpg = "^0.28.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-asyncio = "^0.21.1"
+httpx = "^0.24.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
