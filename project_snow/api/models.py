@@ -11,6 +11,7 @@ class Ingredient(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class IngredientPayload(BaseModel):
@@ -28,6 +29,7 @@ class Potion(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class PotionPayload(BaseModel):
