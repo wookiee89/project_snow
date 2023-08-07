@@ -8,7 +8,7 @@ from typing import Optional
 
 class Patient(BaseModel):
     """Patient model"""
-    id: UUID
+    id: uuid
     first_name: str
     last_name: str
     phone_number: str
@@ -22,8 +22,8 @@ class Patient(BaseModel):
 
 class PatientMedication(BaseModel):
     """PatientMedication model"""
-    pk: UUID
-    patient_id: UUID
+    pk: uuid
+    patient_id: uuid
     drug_code: int
     drug_name: str
     quantity: int
