@@ -1,39 +1,39 @@
 import uuid
 
 from pydantic import BaseModel, Field
+from datetime import datetime, date
+from typing import Optional
 
+    
 
-class Ingredient(BaseModel):
-    """Ingredient model."""
-
-    pk: uuid.UUID
-    name: str
-
-    class Config:
-        orm_mode = True
-        from_attributes = True
-
-
-class IngredientPayload(BaseModel):
-    """Ingredient payload model."""
-
-    name: str = Field(min_length=1, max_length=127)
-
-
-class Potion(BaseModel):
-    """Potion model."""
-
-    pk: uuid.UUID
-    name: str
-    ingredients: list[Ingredient]
+class Patient(BaseModel):
+    """Patient model"""
+    id: UUID
+    first_name: str
+    last_name: str
+    phone_number: str
+    created_at: datetime
+    updated_at: datetime
 
     class Config:
-        orm_mode = True
         from_attributes = True
+        orm_mode = True
 
 
-class PotionPayload(BaseModel):
-    """Potion payload model."""
-
-    name: str = Field(min_length=1, max_length=127)
-    ingredients: list[uuid.UUID] = Field(min_items=1)
+class PatientMedication(BaseModel):
+    """PatientMedication model"""
+    pk: UUID
+    patient_id: UUID
+    drug_code: int
+    drug_name: str
+    quantity: int
+    refills: Optional[int] = None
+    dosage: int
+    start_date: date
+    start_datetime: datetime
+    end_date: date
+    end_datetime: datetime
+    
+    class Config:
+        from_attributes = True
+        orm_mode = True
