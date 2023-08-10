@@ -1,6 +1,6 @@
 import logging
-
 from functools import lru_cache
+
 from pydantic_settings import BaseSettings
 
 logging.basicConfig(level=logging.INFO)
@@ -36,7 +36,7 @@ class Settings(BaseSettings):
         env_file = ".env"
         case_sensitive = True
 
-@lru_cache()
+@lru_cache
 def get_settings(**kwargs) -> Settings:
     """
     Get settings. ready for FastAPI's Depends.

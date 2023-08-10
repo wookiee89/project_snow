@@ -1,14 +1,14 @@
-import typing
-from fastapi import APIRouter
-from fastapi import Depends
-from fastapi import HTTPException
-from pydantic import BaseModel, AnyUrl, EmailStr
 from auth0.v3.exceptions import Auth0Error
+from fastapi import APIRouter, Depends, HTTPException
 
+from project_snow.core.config import Settings, get_settings
+from project_snow.core.dependencies import (
+    authentication,
+    get_auth0_management_client,
+    get_auth0_users_client,
+    management,
+)
 from project_snow.security.funcs import verify_token
-from project_snow.core.dependencies import get_auth0_users_client, get_auth0_management_client, authentication, management
-from project_snow.core.config import get_settings, Settings
-
 
 router = APIRouter()
 

@@ -1,11 +1,9 @@
-from fastapi import APIRouter
-from fastapi import Depends
-from fastapi import HTTPException
-from fastapi.security import OAuth2PasswordRequestForm
 from auth0.v3.exceptions import Auth0Error
+from fastapi import APIRouter, Depends, HTTPException
+from fastapi.security import OAuth2PasswordRequestForm
 
-from project_snow.core.dependencies import get_auth0_token_client, authentication
-from project_snow.core.config import get_settings, Settings
+from project_snow.core.config import Settings, get_settings
+from project_snow.core.dependencies import authentication, get_auth0_token_client
 
 router = APIRouter()
 
@@ -53,5 +51,5 @@ async def login_callback(
         )
     except Auth0Error as e:
         raise HTTPException(status_code=e.status_code, detail=e.message)
-    access_token = response.get("access_token")
+    response.get("access_token")
     return response

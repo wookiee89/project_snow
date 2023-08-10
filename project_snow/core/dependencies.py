@@ -1,6 +1,7 @@
 from auth0.v3 import authentication, management
 
-from project_snow.core.config import get_settings, Settings
+from project_snow.core.config import Settings, get_settings
+
 
 def get_auth0_token_client() -> authentication.GetToken:
     """

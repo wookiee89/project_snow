@@ -2,8 +2,7 @@ from fastapi import Depends
 from fastapi.security import SecurityScopes
 
 from project_snow.security.oauth import oauth2_scheme
-from project_snow.security.token_tools import AccessToken
-from project_snow.security.token_tools import TokenTools, CREDENTIALS_EXCEPTION
+from project_snow.security.token_tools import CREDENTIALS_EXCEPTION, AccessToken, TokenTools
 
 
 def token_tools_factory(token=Depends(oauth2_scheme)) -> TokenTools:

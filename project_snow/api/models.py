@@ -1,11 +1,9 @@
-import uuid
 import typing
+from datetime import date, datetime
 
-from pydantic import BaseModel, UUID4, Field, EmailStr, AnyUrl
-from datetime import datetime, date
-from typing import Optional
+from pydantic import UUID4, AnyUrl, BaseModel, EmailStr, Field
 
-from project_snow.core.config import get_settings, Settings
+from project_snow.core.config import Settings, get_settings
 
 settings: Settings = get_settings()
 

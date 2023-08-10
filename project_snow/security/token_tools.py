@@ -2,16 +2,12 @@ import logging
 from typing import Optional
 
 import httpx
-
-from fastapi import HTTPException
-from fastapi import status
+from fastapi import HTTPException, status
 from fastapi.security import SecurityScopes
-from jose import JWTError
-from jose import jwt
+from jose import JWTError, jwt
 
-from project_snow.security.token import AccessToken
 from project_snow.core.config import get_settings
-
+from project_snow.security.token import AccessToken
 
 CREDENTIALS_EXCEPTION = HTTPException(
     status_code=status.HTTP_401_UNAUTHORIZED,

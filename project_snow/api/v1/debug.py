@@ -1,9 +1,6 @@
-from fastapi import APIRouter
-from fastapi import Depends
-from fastapi import Security
+from fastapi import APIRouter, Depends, Security
 
-from project_snow.security.funcs import verify_token
-from project_snow.security.funcs import verify_token_scoped
+from project_snow.security.funcs import verify_token, verify_token_scoped
 
 router = APIRouter()
 

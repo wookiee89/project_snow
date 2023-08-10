@@ -1,13 +1,11 @@
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
 
-from project_snow.api.v1 import routes
-from project_snow.api.v1 import debug
-from project_snow.api.v1 import token
-from project_snow.api.v1 import user
+from project_snow.api.v1 import debug, routes, token, user
+
 # from project_snow.api.v2.routes import router as v2_router
-from project_snow.core.config import get_settings, Settings
+from project_snow.core.config import Settings, get_settings
 
 app = FastAPI(
     title=Settings.PROJECT_NAME,
