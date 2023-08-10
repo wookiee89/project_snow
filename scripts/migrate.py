@@ -3,7 +3,7 @@ import logging
 
 from sqlalchemy.ext.asyncio import create_async_engine
 
-from project_snow.config import settings
+from project_snow.core.config import settings
 from project_snow.database.models import Base
 
 logger = logging.getLogger()

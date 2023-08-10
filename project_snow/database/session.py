@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
-from project_snow.config import settings
+from project_snow.core.config import settings
 
 
 async def get_db_session() -> AsyncGenerator[AsyncSession, None]:

@@ -1,10 +1,13 @@
 import uuid
+import typing
 
-from pydantic import BaseModel, UUID4, Field
+from pydantic import BaseModel, UUID4, Field, EmailStr, AnyUrl
 from datetime import datetime, date
 from typing import Optional
 
-    
+from project_snow.core.config import get_settings, Settings
+
+settings: Settings = get_settings()
 
 class Patient(BaseModel):
     """Patient model"""
@@ -45,4 +48,17 @@ class PatientMedicationPayload(BaseModel):
     quantity: int
     dosage: int
     start_date: date
-    
+
+class CreateUser(BaseModel):
+    connection: str = settings.AUTH0_DEFAULT_DB_CONNECTION
+    email: EmailStr
+    password: str
+    name: str
+    verify_email: bool = False  # Whether the user will receive a verification email after creation (true) or no email (false). Overrides behavior of email_verified parameter.
+    email_verified: typing.Optional[
+        bool
+    ] = False  # Whether this email address is verified (true) or unverified (false). User will receive a verification email after creation if email_verified is false or not specified
+    given_name: typing.Optional[str] = None
+    family_name: typing.Optional[str] = None
+    nickname: typing.Optional[str] = None
+    picture: typing.Optional[AnyUrl] = None
