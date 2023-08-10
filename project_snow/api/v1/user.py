@@ -1,6 +1,7 @@
 from auth0.v3.exceptions import Auth0Error
 from fastapi import APIRouter, Depends, HTTPException
 
+from project_snow.api import models
 from project_snow.core.config import Settings, get_settings
 from project_snow.core.dependencies import (
     authentication,
@@ -27,7 +28,7 @@ async def read_user_me(
 
 @router.post("/")
 async def create_new_user(
-    create_user: CreateUser,
+    create_user: models.CreateUser,
     auth0_mgmt_client: management.Auth0 = Depends(get_auth0_management_client)
 ):
     """
