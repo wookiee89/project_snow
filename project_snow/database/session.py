@@ -7,11 +7,11 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
-from project_snow.core.config import settings
+from project_snow.core.config import Settings
 
 
 async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
-    engine = create_async_engine(settings.DATABASE_URL)
+    engine = create_async_engine(Settings.DATABASE_URL)
     factory = async_sessionmaker(engine)
     async with factory() as session:
         try:

@@ -29,8 +29,8 @@ class AccessToken(BaseModel):
     iss: str
     sub: str
     aud: Union[str, List[str]] = []
-    iat: str
-    exp: str
+    iat: int
+    exp: int
     azp: str
     scope: str
     gty: Optional[str]

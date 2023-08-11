@@ -10,4 +10,6 @@ done
 
 echo "Postgres started"
 
-uvicorn project_snow.app:app --reload --host "0.0.0.0" --port "8000"
+# uvicorn project_snow.app:app --reload --host "0.0.0.0" --port "8000"
+
+poetry run uvicorn project_snow.app:app --host 0.0.0.0 --port 8000 --reload

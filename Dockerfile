@@ -1,25 +1,28 @@
-FROM python:3.11.3-slim-buster as base
+FROM python:3.11.3-slim-buster
 
-WORKDIR /code
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE 1
 
-# Set env variables
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    PYTHONPATH="/code"
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED 1
 
-# Install necessary soft
 RUN apt-get update \
     && apt-get install -y netcat curl git make gcc postgresql python3-dev libpq-dev \
     && apt-get clean
 
-FROM base as dev
+RUN pip install -U pip \
+    pip install poetry
+RUN poetry config virtualenvs.create false
 
-ENV DEVELOPMENT=1
+COPY poetry.lock pyproject.toml /app/
+WORKDIR /app
 
-# Copy & install dependencies
-COPY ./requirements.txt ./requirements.txt
-RUN pip install -r ./requirements.txt
+RUN poetry install --no-interaction --no-ansi --no-root
 
-COPY . .
+COPY . /app
 
-CMD ["bash", "scripts/run.sh"]
+EXPOSE 8000
+
+RUN chmod 777 scripts/run.sh
+
+CMD ["/bin/bash", "scripts/run.sh"]
